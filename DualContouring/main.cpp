@@ -2,9 +2,11 @@
 #include <stdlib.h>
 
 #include <GL\glew.h>
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include <SDL2\SDL.h>
+#include <SDL2\SDL_opengl.h>
 #include <glm\glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm\gtx\rotate_vector.hpp>
 
 #include "glsl_program.h"
 #include "mesh.h"
@@ -56,7 +58,7 @@ void HandleKeyPress(const SDL_KeyboardEvent& e, bool& drawWireframe, bool& refre
 
 void DrawFrame(GLSLProgram& program, Mesh& mesh, const glm::vec3& pos, const glm::vec3& fwd, bool drawWireframe)
 {
-	glClearColor(0.f, 0.f, 0.f, 0.f);
+	glClearColor(1.f, 1.f, 1.f, 0.f);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
@@ -145,8 +147,8 @@ int main(int argc, char** argv)
 
 	GLSLProgram program;
 	if (!program.initialise() ||
-		!program.compileShader(ShaderType_Vertex, "shader.vert") ||
-		!program.compileShader(ShaderType_Fragment, "shader.frag") ||
+		!program.compileShader(ShaderType_Vertex, "../DualContouring/shader/shader.vert") ||
+		!program.compileShader(ShaderType_Fragment, "../DualContouring/shader/shader.frag") ||
 		!program.link())
 	{
 		printf("Error: failed to create GLSL program\n");
@@ -222,6 +224,7 @@ int main(int argc, char** argv)
 
 		// calculate the forward vector and then use that find the camera position
 		glm::vec3 dir(0.f, 0.f, 1.f);
+
 		dir = glm::rotateX(dir, rotateX);
 		dir = glm::rotateY(dir, rotateY);
 

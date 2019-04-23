@@ -7,6 +7,8 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+
+#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
 #include <hash_map>
 
 enum GLSLShaderTypes
