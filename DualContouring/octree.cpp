@@ -495,6 +495,7 @@ vec3 ApproximateZeroCrossingPosition(const vec3& p0, const vec3& p1)
 vec3 CalculateSurfaceNormal(const vec3& p)
 {
 	const float H = 0.001f;
+  // Finite Difference method
 	const float dx = Density_Func(p + vec3(H, 0.f, 0.f)) - Density_Func(p - vec3(H, 0.f, 0.f));
 	const float dy = Density_Func(p + vec3(0.f, H, 0.f)) - Density_Func(p - vec3(0.f, H, 0.f));
 	const float dz = Density_Func(p + vec3(0.f, 0.f, H)) - Density_Func(p - vec3(0.f, 0.f, H));
@@ -528,7 +529,7 @@ OctreeNode* ConstructLeaf(OctreeNode* leaf)
 	}
 
 	// otherwise the voxel contains the surface, so find the edge intersections
-	const int MAX_CROSSINGS = 6;
+	const int MAX_CROSSINGS = 6; //TODO what is this mean and why is 6?
 	int edgeCount = 0;
 	vec3 averageNormal(0.f);
 	svd::QefSolver qef;

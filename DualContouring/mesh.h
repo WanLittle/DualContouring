@@ -17,7 +17,7 @@ struct MeshVertex
 	{
 	}
 
-	glm::vec3		xyz, normal;
+	glm::vec3 xyz, normal;
 };
 
 typedef std::vector<MeshVertex> VertexBuffer;
@@ -41,8 +41,8 @@ public:
 	void uploadData(const VertexBuffer& vertices, const IndexBuffer& indices);
 	void destroy();
 
-	GLuint			vertexArrayObj_, vertexBuffer_, indexBuffer_;
-	int				numIndices_;
+	GLuint vertexArrayObj_, vertexBuffer_, indexBuffer_;
+	int numIndices_;
 };
 
 // ----------------------------------------------------------------------------

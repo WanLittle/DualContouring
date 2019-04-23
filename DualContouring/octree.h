@@ -36,13 +36,13 @@ enum OctreeNodeType
 {
 	Node_None,
 	Node_Internal,
-	Node_Psuedo,
+	Node_Psuedo, // leaf whose size > 1£¨due to the simplification of octree£©
 	Node_Leaf,
 };
 
 // ----------------------------------------------------------------------------
 
-struct OctreeDrawInfo 
+struct OctreeDrawInfo
 {
 	OctreeDrawInfo()
 		: index(-1)
@@ -50,11 +50,11 @@ struct OctreeDrawInfo
 	{
 	}
 
-	int				index;
-	int				corners;
-	vec3			position;
-	vec3			averageNormal;
-	svd::QefData	qef;
+	int index;
+	int corners;
+	vec3 position;
+	vec3 averageNormal;
+	svd::QefData qef;
 };
 
 // ----------------------------------------------------------------------------
